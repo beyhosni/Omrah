@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: flight-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flightdb
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082

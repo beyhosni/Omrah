@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: planning-service
+
+server:
+  port: 8084
+
+services:
+  flight:
+    url: http://localhost:8082
+  hotel:
+    url: http://localhost:8083
