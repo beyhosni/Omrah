@@ -23,22 +23,25 @@ public class AuthService {
     }
 
     public void register(RegisterRequest request) {
-        userRepository.findByEmail(request.email()).ifPresent(u -> {
+        userRepository.findByEmail(request.getEmail()).ifPresent(u -> {
             throw new RuntimeException("Email déjà utilisé");
         });
+
         User u = new User();
-        u.setEmail(request.email());
-        u.setFullName(request.fullName());
-        u.setPassword(encoder.encode(request.password()));
+        u.setEmail(request.getEmail());
+        u.setFullName(request.getFullName());
+        u.setPassword(encoder.encode(request.getPassword()));
         userRepository.save(u);
     }
 
     public LoginResponse login(LoginRequest request) {
-        User u = userRepository.findByEmail(request.email())
+        User u = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
-        if (!encoder.matches(request.password(), u.getPassword())) {
+
+        if (!encoder.matches(request.getPassword(), u.getPassword())) {
             throw new RuntimeException("Mot de passe incorrect");
         }
+
         String token = jwtService.generateToken(u.getEmail());
         return new LoginResponse(token);
     }
