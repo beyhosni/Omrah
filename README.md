@@ -1,61 +1,41 @@
-# Omrah
-web app to optimise omrah for muslim
+# 🕋 Omrah Platform  
+Web app to optimise Omrah experience for Muslims — planning, booking & guidance.
 
+---
 
-omra-platform/
-├── pom.xml
-├── auth-service/
-│   ├── pom.xml
-│   └── src/main/java/com/omra/auth/
-│       ├── AuthServiceApplication.java
-│       ├── controller/AuthController.java
-│       ├── dto/LoginRequest.java
-│       ├── dto/LoginResponse.java
-│       ├── dto/RegisterRequest.java
-│       ├── entity/User.java
-│       ├── repository/UserRepository.java
-│       ├── security/JwtService.java
-│       ├── service/AuthService.java
-│       └── config/SecurityConfig.java
-├── flight-service/
-│   ├── pom.xml
-│   └── src/main/java/com/omra/flight/
-│       ├── FlightServiceApplication.java
-│       ├── entity/Flight.java
-│       ├── repository/FlightRepository.java
-│       ├── service/FlightService.java
-│       └── controller/FlightController.java
-├── hotel-service/
-│   ├── pom.xml
-│   └── src/main/java/com/omra/hotel/
-│       ├── HotelServiceApplication.java
-│       ├── entity/City.java
-│       ├── entity/Hotel.java
-│       ├── entity/Room.java
-│       ├── repository/CityRepository.java
-│       ├── repository/HotelRepository.java
-│       ├── repository/RoomRepository.java
-│       └── controller/HotelController.java
-├── planning-service/
-│   ├── pom.xml
-│   └── src/main/java/com/omra/planning/
-│       ├── PlanningServiceApplication.java
-│       ├── client/FlightClient.java
-│       ├── client/HotelClient.java
-│       ├── dto/FlightOption.java
-│       ├── dto/HotelOption.java
-│       ├── dto/PlanningRequest.java
-│       ├── dto/BestPlan.java
-│       ├── service/PlanningService.java
-│       └── controller/PlanningController.java
-└── omra-frontend/
-    ├── package.json
-    ├── vite.config.js
-    └── src/
-        ├── main.jsx
-        ├── App.jsx
-        ├── api.js
-        └── pages/
-            ├── LoginPage.jsx
-            ├── PlanningConfigPage.jsx
+## ✅ Badges
+
+![Java](https://img.shields.io/badge/Java-17-red)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-green)
+![Microservices](https://img.shields.io/badge/Architecture-Microservices-blue)
+![Node.js](https://img.shields.io/badge/Node.js-18-green)
+![Vite](https://img.shields.io/badge/Vite-Frontend-purple)
+![Docker](https://img.shields.io/badge/Container-Docker-blue)
+![CI/CD](https://img.shields.io/badge/GitHub-Actions-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+---
+
+## 🎯 Project Goal
+
+- Simplify Omrah journey planning  
+- Find the **best optimized plan** (flights + hotels)  
+- Provide a modern, user-friendly digital platform for pilgrims  
+- Centralize travel, accommodation & scheduling needs  
+
+---
+
+## 🧱 System Architecture
+
+flowchart LR
+    User[[Frontend Web]] -->|HTTP| Gateway((API Gateway))
+    Gateway --> AuthService((Auth Service))
+    Gateway --> FlightService((Flight Service))
+    Gateway --> HotelService((Hotel Service))
+    Gateway --> PlanningService((Planning Service))
+    AuthService --> DB1[(Users DB)]
+    FlightService --> DB2[(Flights DB)]
+    HotelService --> DB3[(Hotels DB)]
+    PlanningService --> FlightService
+    PlanningService --> HotelService
             └── PlanningResultPage.jsx
