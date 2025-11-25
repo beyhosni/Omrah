@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: planning-service-test
+
+services:
+  flight:
+    url: http://localhost:8082
+  hotel:
+    url: http://localhost:8083

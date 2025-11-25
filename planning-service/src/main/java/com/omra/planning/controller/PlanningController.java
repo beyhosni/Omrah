@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/planning")
+@CrossOrigin(origins = "*")
 public class PlanningController {
 
     private final PlanningService service;

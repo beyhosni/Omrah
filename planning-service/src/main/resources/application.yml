@@ -7,6 +7,6 @@ server:
 
 services:
   flight:
-    url: http://localhost:8082
+    url: ${SERVICES_FLIGHT_URL:http://localhost:8082}
   hotel:
-    url: http://localhost:8083
+    url: ${SERVICES_HOTEL_URL:http://localhost:8083}

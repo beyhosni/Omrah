@@ -3,6 +3,8 @@ package com.omra.planning.service;
 import com.omra.planning.client.FlightClient;
 import com.omra.planning.client.HotelClient;
 import com.omra.planning.dto.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.List;
 @Service
 public class PlanningService {
 
+    private static final Logger logger = LoggerFactory.getLogger(PlanningService.class);
     private final FlightClient flightClient;
     private final HotelClient hotelClient;
 
@@ -22,6 +25,9 @@ public class PlanningService {
     }
 
     public BestPlan computeOptimalPlan(PlanningRequest request) {
+        logger.info("Computing optimal plan for {} persons from {} to {}", 
+                request.persons(), request.dateFrom(), request.dateTo());
+        
         int totalDays = (int) ChronoUnit.DAYS.between(request.dateFrom(), request.dateTo());
         if (totalDays <= 0) {
             throw new IllegalArgumentException("Dates invalides");
@@ -42,6 +48,9 @@ public class PlanningService {
 
         List<HotelOption> mekkeHotels = hotelClient.searchHotels("Mekke");
         List<HotelOption> medineHotels = hotelClient.searchHotels("Medine");
+
+        logger.info("Found {} flights, {} Mekke hotels, {} Medine hotels", 
+                flights.size(), mekkeHotels.size(), medineHotels.size());
 
         BestPlan best = null;
 
@@ -66,9 +75,11 @@ public class PlanningService {
         }
 
         if (best == null) {
+            logger.warn("No combination found within budget");
             throw new RuntimeException("Aucune combinaison ne respecte le budget");
         }
 
+        logger.info("Best plan found with score: {}", best.score());
         return best;
     }
 

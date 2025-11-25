@@ -5,29 +5,66 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# IntelliJ / Eclipse / VS Code
+# Java
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# IDE
 .idea/
+.vscode/
 *.iml
 *.ipr
 *.iws
 .project
 .classpath
 .settings/
-.vscode/
+*.swp
+*.swo
+*~
 
-# Logs
-*.log
-logs/
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.cache/
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Node / React
-omra-frontend/node_modules/
-omra-frontend/dist/
-
-# Env files
-*.env
+# Environment
+.env
 .env.local
+.env.*.local
+
+# Docker
+*.log
+
+# Spring Boot
+application-local.yml
+application-dev.yml
+
+# Tests
+*.log
+test-output/
+coverage/
+
+# Build
+build/
+out/
